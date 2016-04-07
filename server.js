@@ -94,7 +94,7 @@ app.get('/:id', function(req, res) {
   if (req.params.id in lobby.rooms) {
     res.render('index.ejs');
   } else {
-   res.redirect('/');  
+   res.redirect('/');
   }
 });
 
@@ -137,11 +137,11 @@ io.sockets.on('connection', function (socket) {
     // console.log("On disconnect", socket.id);
     lobby.broadcastDisconnect(socket);
   });
-  
+
   socket.on('create room', function (data, callback) {
     statsSocketMessagesReceived++;
     // console.log("on create room", socket.id, data);
-    callback(lobby.createRoom());
+    callback(lobby.createRoom(data));
   });
 
   socket.on('join room', function (data, callback) {

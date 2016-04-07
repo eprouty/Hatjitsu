@@ -49,10 +49,10 @@ MainCtrl.$inject = ['$scope', '$timeout'];
 
 function LobbyCtrl($scope, $location, socket) {
   $scope.disableButtons = false;
-  $scope.createRoom = function () {
-    // console.log('createRoom: emit create room');
+  $scope.createRoom = function (name) {
+    // console.log('createRoom: emit create room ');
     $scope.disableButtons = true;
-    socket.emit('create room', {}, function (roomUrl) {
+    socket.emit('create room', { roomName: name}, function (roomUrl) {
       $location.path(roomUrl);
     });
   };
